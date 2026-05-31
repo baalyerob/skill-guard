@@ -95,6 +95,51 @@ If user declines: immediately run `npx skills remove <name> -y`.
   Ask for explicit confirmation. If already installed, offer immediate removal.
 - **Unknown**: state that risk data is unavailable and ask for confirmation.
 
+### Step 5 — Risk reminder offer (when user keeps a flagged skill)
+
+When the user explicitly decides to **keep** a ⚠️ or ❌ skill, immediately ask:
+
+```
+Ce skill a été signalé pour [pattern risqué identifié — ex: appels réseau,
+curl, shell exec, eval...]. Souhaitez-vous être rappelé d'un mot quand il
+s'apprête à utiliser ce type d'opération ?
+```
+
+**Identifying the risky pattern from scanner flags:**
+- Socket alert → look for: `curl`, `sh`, `bash`, shell exec, network calls, `eval`
+- Snyk flag → vulnerable dependency name (from report details)
+- Gen flag → the specific pattern the AI flagged (code injection, data exfil, etc.)
+- Plugin hooks → the hook event that triggers automatically
+
+**If the user says yes:**
+Save a memory entry using the Write tool at the user's memory path:
+
+```markdown
+---
+name: risk-reminder-<skill-name>
+description: Rappeler l'alerte <scanner> quand <skill-name> utilise <pattern>
+metadata:
+  type: feedback
+---
+
+Quand le skill `<skill-name>` s'apprête à exécuter ou suggère une opération
+de type `<risky pattern>` (ex: curl, sh, eval...), ajouter une courte note :
+"_(⚠️ <scanner> alert sur ce skill — conservé en connaissance de cause)_"
+
+**Why:** Scanner <scanner> a levé une alerte lors de l'installation de
+`<skill-name>`. L'utilisateur a choisi de garder le skill mais veut un rappel
+discret quand le pattern risqué se manifeste concrètement.
+
+**How to apply:** Note parenthétique d'une ligne max, non bloquante.
+Ne pas répéter le rapport complet — juste signaler.
+```
+
+**If the user says no:** respect the choice, no reminder saved.
+
+The reminder must be **non-blocking** — a single parenthetical line, never
+a full re-run of the risk report. The user already made an informed decision;
+the reminder is a courtesy signal, not a second interrogation.
+
 ---
 
 ## AUDIT MODE — Scan what is already installed
