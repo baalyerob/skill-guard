@@ -1,0 +1,11 @@
+{
+  "name": "skill-guard",
+  "description": "Security guard for Claude Code. Intercepts claude plugin install and npx skills add. Checks Gen, Socket and Snyk risk scores. Blocks on High Risk. Audits full environment on demand. Actions: install, add, plugin, skill, security, risk, audit, scan, check, safe, verify. Triggers: before every installation command, when user asks are my skills safe, scan my environment, what did I install.",
+  "version": "1.0.0",
+  "author": {
+    "name": "baalyerob"
+  },
+  "license": "MIT",
+  "keywords": ["security", "risk-assessment", "audit", "installation", "claude-code", "skill", "plugin"],
+  "skills": ["./SKILL.md"]
+}
