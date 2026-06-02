@@ -1,0 +1,11 @@
+{
+  "name": "skill-guard",
+  "displayName": "Skill Guard",
+  "description": "Security guard for Claude Code skill and plugin installations — risk check before every install. Intercept mode blocks risky packages; Audit mode scans your whole environment.",
+  "version": "1.0.0",
+  "author": "baalyerob",
+  "license": "MIT",
+  "repository": "https://github.com/baalyerob/skill-guard",
+  "keywords": ["security", "risk-assessment", "installation", "audit", "claude-code", "ai-skills", "skill"],
+  "platforms": ["claude"]
+}
