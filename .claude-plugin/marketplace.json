@@ -1,0 +1,25 @@
+{
+  "name": "skill-guard",
+  "id": "skill-guard",
+  "owner": {
+    "name": "baalyerob"
+  },
+  "metadata": {
+    "description": "Security guard for Claude Code — risk check before every skill or plugin installation",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "skill-guard",
+      "source": "./",
+      "description": "Intercepts every claude plugin install and npx skills add command. Checks Gen, Socket and Snyk scores before installing. Blocks risky packages. Audits your full environment on demand.",
+      "version": "1.0.0",
+      "author": {
+        "name": "baalyerob"
+      },
+      "keywords": ["security", "risk-assessment", "audit", "installation", "claude-code"],
+      "category": "security",
+      "strict": false
+    }
+  ]
+}
